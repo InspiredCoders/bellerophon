@@ -1,7 +1,7 @@
 """docstring placeholder"""
 import os
 
-path = os.path.join(os.getcwd(), r'tests\garbbage')
+path = os.path.join(os.getcwd(), 'tests','garbbage')
 dirs = []
 files = []
 excluded_strings = ['amal', 'hurry']
