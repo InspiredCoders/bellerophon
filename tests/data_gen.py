@@ -37,8 +37,11 @@ def millis_time():
 
 def main():
     parent_directory = os.path.join('tests', 'garbbage')
-    epochs = 10  # Increase the epochs to create more files and dirs
+    epochs = 10000  # Increase the epochs to create more files and dirs
+    f_count = 10  # Number of files per directory
+    max_path_length = 200  # Number of characters allowed in the path name
     is_directory = [True, False]
+    go_inside = [True, False]
     name_list = ['amal', 'hurry', 'test', 'random', 'orange', 'goat', 'normal']
     extension = ['txt', 'mp3', 'cpp', 'hpp', 'mkv', 'wav', 'mp4', 'lst', 'cap']
     dir_count = 0
@@ -46,16 +49,27 @@ def main():
 
     dir_gen(parent_directory)
 
+    dir_list = [parent_directory]
+
     for _ in range(epochs):
         if random.choice(is_directory):
-            dir_name = os.path.join(parent_directory, random.choice(name_list))
+            choice = random.choice(name_list)
+            dir_name = os.path.join(*dir_list, choice)
             dir_gen(dir_name)
             dir_count += 1
+            if random.choice(go_inside) and len(dir_name) < max_path_length:
+                dir_list.append(choice)
+            elif (
+                not(os.path.join(*dir_list) == parent_directory) and
+                len([name for name in os.listdir(dir_name)]) >=
+                (epochs/f_count)
+            ):
+                del dir_list[-1]
         else:
             extn = random.choice(extension)
             name_part = random.choice(name_list)
             full_name = name_part + '_' + millis_time() + '.' + extn
-            file_name = os.path.join(parent_directory, full_name)
+            file_name = os.path.join(*dir_list, full_name)
             file_gen(file_name)
             file_count += 1
 
