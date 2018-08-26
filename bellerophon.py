@@ -1,4 +1,12 @@
-"""docstring placeholder"""
+"""
+Implemented Features
+1. Renaming files and folders in bulk in such a way that if blacklisted
+    strings are present in file/folder names by removing blacklisted strings from the names.
+2. Blacklisted strings are stored in a text file in the program directory
+3. Program asks for target location.
+4. Program generates a log file at target location once completed
+    renaming with the details of rename operation
+"""
 import os
 
 # list to store names and status of files/directories present in the given
