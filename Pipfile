@@ -3,9 +3,10 @@ url = "https://pypi.org/simple"
 name = "pypi"
 verify_ssl = true
 
+[requires]
+python_version = "3.7"
+
 [dev-packages]
 
-[requires]
-python_version = "3.5"
-
 [packages]
+"pep8" = "*"
