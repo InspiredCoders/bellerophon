@@ -17,9 +17,10 @@ _children = [
 # list to store the strings to be removed from file/directory names
 # NOTE: This has to be changed to be later when we load this data from
 # external file
-_blacklist = ['amal', 'hurry']
-_path = os.path.join(os.getcwd(), 'tests', 'garbbage')
-
+_blacklist_path = os.path.join(os.getcwd(), 'blacklist.txt')
+_blacklist = [line.rstrip() for line in open(_blacklist_path, "r")]
+#_path = os.path.join(os.getcwd(), 'tests', 'garbbage')
+_path = input("Provide target directory location(fully qualified location):")
 
 def rename(object_type, object_name):
     """
@@ -46,10 +47,11 @@ def rename(object_type, object_name):
             removed_strings += backlisted_string
     # if object name is changed, file has been renamed
     if old_name != object_name:
+        os.rename(os.path.join(_path, old_name), os.path.join(_path, object_name))
         action = "Renamed"
-    _children.append(
-        (_path, object_type, old_name, action, object_name, removed_strings)
-    )
+        _children.append(
+            (_path, object_type, old_name, action, object_name, removed_strings)
+        )
 
 
 def main():
@@ -62,12 +64,14 @@ def main():
             rename('file', child_object.name)
         elif child_object.is_dir():
             rename('directory', child_object.name)
+    log_file = open(os.path.join(_path, "log.txt"), "w")
     for child in _children:
-        print(
-            '{:<30}{:<30}{:<30}{:<30}{:<30}{:<30}'.format(
+        log_file.write(
+            '{:<30}{:<30}{:<30}{:<30}{:<30}{:<30}\n'.format(
                 child[1], child[2], child[3], child[4], child[5], child[0]
             )
         )
+    log_file.close()
 
 if __name__ == '__main__':
     main()
