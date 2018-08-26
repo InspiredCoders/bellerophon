@@ -23,7 +23,7 @@ def dir_gen(directory_name):
 
 
 def file_gen(file_name):
-    """
+    """created
     Function to create folders.
 
     :param string filename: Fully qualified file name which is to be craeted
@@ -41,7 +41,7 @@ def millis_time():
 
 
 def main():
-    parent_directory = os.path.join('tests', 'garbbage')
+    parent_directory = input('Enter the path for test data: ')
     epochs = 10000  # Increase the epochs to create more files and dirs
     f_count = 10  # Number of files per directory
     max_path_length = 200  # Number of characters allowed in the path name
