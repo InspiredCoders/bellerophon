@@ -1,0 +1,4 @@
+{
+    "blacklist_file" : "blacklist.txt",
+    "recursive" : true
+}
