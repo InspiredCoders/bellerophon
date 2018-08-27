@@ -23,7 +23,7 @@ def dir_gen(directory_name):
 
 
 def file_gen(file_name):
-    """created
+    """
     Function to create folders.
 
     :param string filename: Fully qualified file name which is to be craeted
@@ -37,6 +37,9 @@ def file_gen(file_name):
 
 
 def millis_time():
+    """
+    Function to return current time in milliseconds
+    """
     return str(int(round(time.time())))
 
 
