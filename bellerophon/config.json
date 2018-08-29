@@ -1,4 +1,5 @@
 {
     "blacklist_file" : "blacklist.txt",
-    "recursive" : true
+    "recursive" : true,
+    "database_location": "test.db"
 }
