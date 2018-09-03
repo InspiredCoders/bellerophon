@@ -16,7 +16,7 @@ def parse_args():
                         help='File containing blacklisted names')
     parser.add_argument('-r', '--recursive', required=True,
                         help='Whether action is recursive or not')
-    return parser.parse_args()
+    return vars(parser.parse_args())
 
 
 def main():
@@ -34,9 +34,11 @@ def main():
     blacklisted_strings = [
         line.replace('\n', '') for line in open(blacklist_file_location, "r")
         ]
-    target_location = input(
-        "Provide target directory location(fully qualified location):"
-        )
+    # target_location = input(
+    #     "Provide target directory location(fully qualified location):"
+    #     )
+    args = parse_args()
+    target_location = args["path"]
     bellerophone = Bellerophone(blacklisted_strings)
     print("Renaming is in progress...")
     bellerophone.crawl_and_rename(target_location, True)
@@ -53,6 +55,7 @@ def main():
                 child[3], child[4], child[5], child[6], child[7]
             )
     print("Execution completed.")
+
 
 if __name__ == '__main__':
     main()
