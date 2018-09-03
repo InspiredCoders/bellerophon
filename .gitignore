@@ -1,2 +1,3 @@
 .vscode/
 bellerophon/__pycache__/
+*.db
