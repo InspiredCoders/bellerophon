@@ -5,6 +5,20 @@ import os
 import argparse
 
 
+def parse_args():
+    """
+    Function wrapping the argument parse for cli
+    """
+    parser = argparse.ArgumentParser(description='File rename util.')
+    parser.add_argument('-p', '--path', required=True,
+                        help='Path containing files to be renamed')
+    parser.add_argument('-b', '--blacklist', required=False,
+                        help='File containing blacklisted names')
+    parser.add_argument('-r', '--recursive', required=True,
+                        help='Whether action is recursive or not')
+    return parser.parse_args()
+
+
 def main():
     """
     Main code to run
