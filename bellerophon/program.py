@@ -4,7 +4,14 @@ from bellerophon import Bellerophone
 import os
 
 
-def main():
+def greet():
+    print('--------------------')
+    print('    BELLEROPHON')
+    print('--------------------')
+    print()
+
+
+def rename():
     """
     Main code to run
     """
@@ -52,7 +59,8 @@ def find_replace():
     if old_string:
         new_string = input("REPLACE:")
         if new_string:
-            bellerophone.crawl_and_find_and_replace(target_location, True, old_string, new_string)
+            bellerophone.crawl_and_find_and_replace(target_location, True,
+                                                    old_string, new_string)
         if bellerophone.log == []:
             print("No objects to rename!")
         else:
@@ -68,5 +76,22 @@ def find_replace():
     print("Execution completed.")
 
 
+def main():
+    greet()
+    while True:
+        print('Choose [B]ulk rename, [R]ename or [Q]uit')
+        option = input('Your option: ')
+        if str(option).upper() == 'B':
+            rename()
+        elif str(option).upper() == 'R':
+            find_replace()
+        elif str(option).upper() == 'Q':
+            print('Goodbye')
+            break
+        else:
+            print("Invalid input")
+            print()
+
+
 if __name__ == '__main__':
-    find_replace()
+    main()
